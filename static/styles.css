@@ -1,0 +1,72 @@
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    font-weight: bold; /* Apply bold font weight globally */
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    margin: 0;
+    color: #333; /* Darker font color for better readability */
+}
+
+.container {
+    width: 500px;
+    text-align: center;
+    padding: 20px; /* Padding for better spacing */
+    background: #FFFFFF; /* White background for form container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+form { 
+    background: #FFF; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px; /* Larger font size */
+}
+
+input[type="submit"] {
+    background-color: #1e1a20;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 18px; /* Larger font size for better readability */
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: green;
+}
+
+#price_range {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+
+.noUi-horizontal {
+    height: 10px;
+    background-color: #CCC; /* Slider background */
+}
+
+.noUi-connect {
+    background: #76b5c5; /* Color of the slider's connect part */
+}

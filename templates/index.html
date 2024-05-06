@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Recommendation Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form action="/" method="POST">
+            <div class="form-item">
+                Fuel Type:
+                <select name="fuel_type">
+                    <option value="Petrol">Petrol</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="CNG">CNG</option>
+                </select>
+            </div>
+
+            <div class="form-item">
+                Engine Displacement (liters):
+                <input type="number" name="engine_displacement" step="0.5" value="1.0" min="0" max="10.0">
+            </div>
+
+            <div class="form-item">
+                Number of Cylinders:
+                <input type="number" name="no_cylinder" value="4" min="1" max="12">
+            </div>
+
+            <div class="form-item">
+                Seating Capacity:
+                <input type="number" name="seating_capacity" value="5" min="1" max="8">
+            </div>
+
+            <div class="form-item">
+                Transmission Type:
+                <select name="transmission_type">
+                    <option value="Automatic">Automatic</option>
+                    <option value="Manual">Manual</option>
+                    <option value="CVT">CVT</option>
+                    <option value="Electric">Electric</option>
+                </select>
+            </div>
+
+            <div class="form-item">
+                Body Type:
+                <select name="body_type">
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="MUV">MUV</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Minivan">Minivan</option>
+                    <option value="Convertible">Convertible</option>
+                    <option value="Estate">Estate</option>
+                    <option value="Wagon">Wagon</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
+            </div>
+
+            <div class="form-item">
+                <div id="price_range"></div>
+                <span id="price_output">₹400,000 - ₹10,000,000</span>
+                <input type="hidden" name="price_low" id="price_low" value="400000">
+                <input type="hidden" name="price_high" id="price_high" value="10000000">
+            </div>
+
+            <div class="form-item">
+                <input type="submit" value="Recommend Car">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var priceRange = document.getElementById('price_range');
+        noUiSlider.create(priceRange, {
+            start: [400000, 10000000],
+            connect: true,
+            range: {
+                'min': 400000,
+                'max': 10000000
+            },
+            step: 100000,
+            format: wNumb({
+                decimals: 0,
+                thousand: ',',
+                prefix: '₹'
+            })
+        });
+
+        priceRange.noUiSlider.on('update', function (values, handle) {
+            document.getElementById('price_output').innerHTML = values.join(' - ');
+            document.getElementById('price_low').value = values[0].replace(/[^\d]/g, '');  // Removing non-numeric characters
+            document.getElementById('price_high').value = values[1].replace(/[^\d]/g, ''); // Removing non-numeric characters
+        });
+    </script>
+    
+    
+</body>
+</html>
